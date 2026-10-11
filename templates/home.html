@@ -1,0 +1,320 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookNest | Online Book Store</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="/" class="logo">BookNest<span>.</span></a>
+
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#categories">Categories</a>
+            <a href="#featured">Featured Books</a>
+            <a href="#new-arrivals">New Arrivals</a>
+        </div>
+
+        <div class="navbar-actions">
+            <a href="#featured" class="nav-button">Explore Books</a>
+            <button type="button" class="nav-button cart-nav-button"
+                    onclick="toggleCart()">
+                🛒 Cart (<span id="cartCount">0</span>)
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <p class="eyebrow">YOUR NEXT CHAPTER STARTS HERE</p>
+            <h1>Discover stories<br>that <span>stay with you.</span></h1>
+            <p class="hero-description">
+                Explore a world of imagination, knowledge and inspiration.
+                Find your next favourite book at BookNest.
+            </p>
+            <a href="#featured" class="primary-button">Explore Collection →</a>
+        </div>
+
+        <div class="hero-image">
+            <img
+                src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=900&q=85"
+                alt="A collection of books">
+        </div>
+    </section>
+
+    <!-- BOOK SEARCH -->
+    <section class="search-section">
+        <div class="search-heading">
+            <p class="eyebrow">FIND YOUR NEXT READ</p>
+            <h2>Search Your Favourite Books</h2>
+            <p>Search by book title, author or category.</p>
+        </div>
+
+        <div class="search-box">
+            <span>🔍</span>
+            <input type="text" id="bookSearch"
+                   placeholder="Search books by title or author..."
+                   aria-label="Search books">
+            <button type="button" id="searchButton">Search</button>
+        </div>
+
+        <p id="searchMessage" aria-live="polite"></p>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section class="categories section" id="categories">
+        <div class="section-heading">
+            <p class="eyebrow">EXPLORE YOUR INTERESTS</p>
+            <h2>Browse Categories</h2>
+        </div>
+
+        <div class="category-grid">
+            <a href="#featured" class="category-card">
+                <span>📖</span>
+                <h3>Fiction</h3>
+                <p>Stories that inspire</p>
+            </a>
+
+            <a href="#featured" class="category-card">
+                <span>🧠</span>
+                <h3>Self-Help</h3>
+                <p>Grow every day</p>
+            </a>
+
+            <a href="#featured" class="category-card">
+                <span>💻</span>
+                <h3>Technology</h3>
+                <p>Learn something new</p>
+            </a>
+
+            <a href="#featured" class="category-card">
+                <span>💖</span>
+                <h3>Romance</h3>
+                <p>Stories of love</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- FEATURED BOOKS -->
+    <section class="books-section section" id="featured">
+        <div class="section-heading">
+            <p class="eyebrow">HANDPICKED FOR YOU</p>
+            <h2>Featured Books</h2>
+            <p>Popular picks for your next reading session.</p>
+        </div>
+
+        <div class="book-grid">
+
+            <article class="book-card">
+                <img src="https://covers.openlibrary.org/b/isbn/9780061120084-L.jpg"
+                     alt="To Kill a Mockingbird book cover">
+                <div class="book-info">
+                    <span class="book-category">Classic Fiction</span>
+                    <h3>To Kill a Mockingbird</h3>
+                    <p>Harper Lee</p>
+                    <div class="book-bottom">
+                        <strong>₹399</strong><span>★ 4.8</span>
+                    </div>
+                    <button class="book-button"
+                            onclick="addToCart('To Kill a Mockingbird')">
+                        Add to Cart
+                    </button>
+                </div>
+            </article>
+
+            <article class="book-card">
+                <img src="https://covers.openlibrary.org/b/isbn/9780743273565-L.jpg"
+                     alt="The Great Gatsby book cover">
+                <div class="book-info">
+                    <span class="book-category">Classic Fiction</span>
+                    <h3>The Great Gatsby</h3>
+                    <p>F. Scott Fitzgerald</p>
+                    <div class="book-bottom">
+                        <strong>₹299</strong><span>★ 4.6</span>
+                    </div>
+                    <button class="book-button"
+                            onclick="addToCart('The Great Gatsby')">
+                        Add to Cart
+                    </button>
+                </div>
+            </article>
+
+            <article class="book-card">
+                <img src="https://covers.openlibrary.org/b/isbn/9780132350884-L.jpg"
+                     alt="Clean Code book cover">
+                <div class="book-info">
+                    <span class="book-category">Technology</span>
+                    <h3>Clean Code</h3>
+                    <p>Robert C. Martin</p>
+                    <div class="book-bottom">
+                        <strong>₹599</strong><span>★ 4.9</span>
+                    </div>
+                    <button class="book-button"
+                            onclick="addToCart('Clean Code')">
+                        Add to Cart
+                    </button>
+                </div>
+            </article>
+
+            <article class="book-card">
+                <img src="https://covers.openlibrary.org/b/isbn/9780141439600-L.jpg"
+                     alt="Pride and Prejudice book cover">
+                <div class="book-info">
+                    <span class="book-category">Romance</span>
+                    <h3>Pride and Prejudice</h3>
+                    <p>Jane Austen</p>
+                    <div class="book-bottom">
+                        <strong>₹349</strong><span>★ 4.7</span>
+                    </div>
+                    <button class="book-button"
+                            onclick="addToCart('Pride and Prejudice')">
+                        Add to Cart
+                    </button>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- INSPIRATION BANNER -->
+    <section class="reading-banner">
+        <div>
+            <p class="eyebrow">A LITTLE INSPIRATION</p>
+            <h2>One book can change<br>the way you see the world.</h2>
+            <p>Make time for a new story today.</p>
+        </div>
+        <a href="#new-arrivals" class="primary-button">Discover More →</a>
+    </section>
+
+    <!-- NEW ARRIVALS -->
+    <section class="books-section section" id="new-arrivals">
+        <div class="section-heading">
+            <p class="eyebrow">FRESH OFF THE SHELF</p>
+            <h2>New Arrivals</h2>
+            <p>Find your next great read.</p>
+        </div>
+
+        <div class="book-grid">
+
+            <article class="book-card">
+                <img src="https://covers.openlibrary.org/b/isbn/9780062315007-L.jpg"
+                     alt="The Alchemist book cover">
+                <div class="book-info">
+                    <span class="book-category">Inspirational</span>
+                    <h3>The Alchemist</h3>
+                    <p>Paulo Coelho</p>
+                    <div class="book-bottom">
+                        <strong>₹299</strong><span>★ 4.8</span>
+                    </div>
+                    <button class="book-button"
+                            onclick="addToCart('The Alchemist')">
+                        Add to Cart
+                    </button>
+                </div>
+            </article>
+
+            <article class="book-card">
+                <img src="https://covers.openlibrary.org/b/isbn/9780747532743-L.jpg"
+                     alt="Harry Potter book cover">
+                <div class="book-info">
+                    <span class="book-category">Fantasy</span>
+                    <h3>Harry Potter</h3>
+                    <p>J. K. Rowling</p>
+                    <div class="book-bottom">
+                        <strong>₹449</strong><span>★ 4.9</span>
+                    </div>
+                    <button class="book-button"
+                            onclick="addToCart('Harry Potter')">
+                        Add to Cart
+                    </button>
+                </div>
+            </article>
+
+            <article class="book-card">
+                <img src="https://covers.openlibrary.org/b/isbn/9780060850524-L.jpg"
+                     alt="Brida book cover">
+                <div class="book-info">
+                    <span class="book-category">Fiction</span>
+                    <h3>Brida</h3>
+                    <p>Paulo Coelho</p>
+                    <div class="book-bottom">
+                        <strong>₹329</strong><span>★ 4.5</span>
+                    </div>
+                    <button class="book-button"
+                            onclick="addToCart('Brida')">
+                        Add to Cart
+                    </button>
+                </div>
+            </article>
+
+            <article class="book-card">
+                <img src="https://covers.openlibrary.org/b/isbn/9781501124020-L.jpg"
+                     alt="It Ends with Us book cover">
+                <div class="book-info">
+                    <span class="book-category">Romance</span>
+                    <h3>It Ends with Us</h3>
+                    <p>Colleen Hoover</p>
+                    <div class="book-bottom">
+                        <strong>₹399</strong><span>★ 4.6</span>
+                    </div>
+                    <button class="book-button"
+                            onclick="addToCart('It Ends with Us')">
+                        Add to Cart
+                    </button>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- SHOPPING CART -->
+    <section class="cart-section section" id="cartSection" hidden>
+        <div class="section-heading">
+            <p class="eyebrow">YOUR BOOK COLLECTION</p>
+            <h2>Shopping Cart 🛒</h2>
+            <p>Review your selected books.</p>
+        </div>
+
+        <div id="cartItems"></div>
+
+        <div class="cart-summary">
+            <p>Total Items: <strong id="cartItemCount">0</strong></p>
+            <p>Total Price: <strong id="cartTotal">₹0</strong></p>
+
+            <div class="cart-actions">
+                <button type="button" class="book-button"
+                        onclick="clearCart()">
+                    Clear Cart
+                </button>
+
+                <button type="button" class="primary-button"
+                        onclick="checkout()">
+                    Proceed to Checkout →
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" id="contact">
+        <a href="/" class="logo">BookNest<span>.</span></a>
+        <p>Your next favourite book is waiting for you.</p>
+        <div class="footer-links">
+            <a href="#home">Home</a>
+            <a href="#categories">Categories</a>
+            <a href="#featured">Books</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <p class="copyright">© 2026 BookNest. All rights reserved.</p>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
